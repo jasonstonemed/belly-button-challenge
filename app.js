@@ -55,7 +55,7 @@ function optionChanged(id) {
             text: trace3[0],
             mode: 'markers',
             marker: {
-            size: trace2[0].map(num => num * 0.8),
+            size: trace2[0].map(num => num * 0.25),
             color: trace1[0]
             },
         }];
@@ -68,15 +68,28 @@ function optionChanged(id) {
 
         Plotly.newPlot("bubble", bubtrace, bublayout);
 
-        // // Display metadata/demographic info in the Demographic Info box
-        // let metadata = data.metadata;
-        // let resultArray2 = metadata.filter(sampleObj => sampleObj.id == id);
-        // let result = resultArray2[0];
-        // let panel = d3.select("#sample-metadata");
-        // panel.html("");
-        // Object.entries(result).forEach(([key, value]) => {
+ // Display metadata/demographic info in the Demographic Info box
+        // extract metadata from 'data' json object
+        let metadata = data.metadata;
 
-       
-        // console.log(resultArray);
+        // filter metadata by id- results in a list inside a list [[...]]
+        let resultArray2 = metadata.filter(sampleObj => sampleObj.id == id);
+
+        // extract the list from the list 
+        let result = resultArray2[0];
+
+        // add demographic info to id from html
+        let panel = d3.select("#sample-metadata");
+
+        // clear any existing metadata
+        panel.html("");
+
+        // convert 'result' into an array of k/v pairs. then iterate over array
+        Object.entries(result).forEach(([key, value]) => {       
+        console.log(key, value);
+
+        //
+        panel.append("h6").text(`${key.toUpperCase()}: ${value}`);
+        });
     });}
     
