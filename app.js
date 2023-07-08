@@ -41,9 +41,8 @@ function optionChanged(id) {
                  
         let layout = {
             title: "Top 10 OTUs Found",
-            xaxis: { title: "Sample Values" },
-            yaxis: { title: "OTU IDs" }
-        };
+            xaxis: { title: "Microbial Count (sample_values)" },
+            };
            
         Plotly.newPlot("bar", trace, layout);
 
@@ -55,14 +54,15 @@ function optionChanged(id) {
             mode: 'markers',
             marker: {
             size: trace2[0].map(num => num * 0.25),
+
             color: trace1[0]
             },
         }];
                  
         let bublayout = {
             // title: "Top 10 OTUs Found",
-            xaxis: { title: "OTU ID" }
-            // yaxis: { title: "OTU IDs" }
+            xaxis: { title: "OTU ID" },
+            yaxis: { title: "Microbial Count (sample_values" }
         };
 
         Plotly.newPlot("bubble", bubtrace, bublayout);
