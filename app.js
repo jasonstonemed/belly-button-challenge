@@ -23,14 +23,13 @@ function optionChanged(id) {
         var resultArray = samples.filter(sampleObj => sampleObj.id == id);
 
         console.log(resultArray);
-// });
-// }
-
+        
 // Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
         let trace1 = resultArray.map(sample => sample.otu_ids);
         let trace2 = resultArray.map(sample => sample.sample_values);
         let trace3 = resultArray.map(sample => sample.otu_labels);
 
+        // Create the chart
         let trace = [{
             x: trace2[0].slice(0, 10).reverse(),
             y: trace1[0].slice(0, 10).map(otu_id => `OTU ${otu_id}`).reverse(),
