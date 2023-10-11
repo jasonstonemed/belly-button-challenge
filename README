@@ -2,7 +2,7 @@ README
 This project is about using the D3 library to read in a JSON file from a specified URL and perform various data visualizations based on the fetched data. The data comprises samples of operational taxonomic units (OTUs) for a number of individuals.
 
 Getting Started
-Firstly, include the D3 library in your HTML file:
+First, include the D3 library in your HTML file:
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
 freecodecamp.org
@@ -15,7 +15,6 @@ d3.json(endpt).then(function(data) {
     console.log(typeof data);
     // Other operations...
 });
-stackoverflow.com
 
 Data Processing
 Once the JSON file is fetched, we use a for loop to append data to each sample:
@@ -26,7 +25,6 @@ belly = d3.select("#selDataset");
 for (let i = 0; i < list.length; i++) {
     belly.append("option").text(list[i]).attr("value", list[i]);
 }
-tutorialsteacher.com
 
 Data Visualization
 The project involves creating various types of charts to visualize the data:
@@ -86,10 +84,9 @@ Built With
 D3.js - The JavaScript library used for data visualization
 JavaScript - The programming language used
 Plotly - The JavaScript graphing library used
+
 Author
-[Your Name]
-License
-This project is licensed under the [Name of License]
+Jason Stone
 
 Acknowledgments
-Phind and StackOverflow for readme assistance. Reviewed and/or amended by this author.
+Phind.com for readme assistance. Reviewed and/or amended by this author.
