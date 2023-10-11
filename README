@@ -1,0 +1,95 @@
+README
+This project is about using the D3 library to read in a JSON file from a specified URL and perform various data visualizations based on the fetched data. The data comprises samples of operational taxonomic units (OTUs) for a number of individuals.
+
+Getting Started
+Firstly, include the D3 library in your HTML file:
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+freecodecamp.org
+
+The JSON file is fetched using D3's d3.json() function:
+
+const endpt = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
+
+d3.json(endpt).then(function(data) {
+    console.log(typeof data);
+    // Other operations...
+});
+stackoverflow.com
+
+Data Processing
+Once the JSON file is fetched, we use a for loop to append data to each sample:
+
+list = data.names; 
+belly = d3.select("#selDataset");
+
+for (let i = 0; i < list.length; i++) {
+    belly.append("option").text(list[i]).attr("value", list[i]);
+}
+tutorialsteacher.com
+
+Data Visualization
+The project involves creating various types of charts to visualize the data:
+
+1. Horizontal Bar Chart
+We create a horizontal bar chart to display the top 10 OTUs found in an individual. The Plotly.newPlot() function is used to create the chart:
+
+let trace = [{
+    x: trace2[0].slice(0, 10).reverse(),
+    y: trace1[0].slice(0, 10).map(otu_id => `OTU ${otu_id}`).reverse(),
+    text: trace3[0].slice(0, 10).reverse(),  type: "bar",
+    orientation: "h"
+}];
+
+let layout = {
+    title: "Top 10 OTUs Found",
+    xaxis: { title: "Microbial Count (sample_values)" },
+};
+
+Plotly.newPlot("bar", trace, layout);
+2. Bubble Chart
+We create a bubble chart that displays each sample. The Plotly.newPlot() function is used to create the chart:
+
+let bubtrace = [{
+    x: trace1[0],
+    y: trace2[0],
+    text: trace3[0],
+    mode: 'markers',  marker: {
+    size: trace2[0].map(num => num * 0.25),
+    color: trace1[0]
+    },
+}];
+
+let bublayout = {
+    xaxis: { title: "OTU ID" },
+    yaxis: { title: "Microbial Count (sample_values" }
+};
+
+Plotly.newPlot("bubble", bubtrace, bublayout);
+Display Metadata
+The project also involves displaying metadata/demographic info in the "Demographic Info" box:
+
+let metadata = data.metadata;
+let resultArray2 = metadata.filter(sampleObj => sampleObj.id == id);
+let result = resultArray2[0];
+let panel = d3.select("#sample-metadata");
+panel.html("");
+
+Object.entries(result).forEach(([key, value]) => {
+    console.log(key, value);
+    panel.append("h6").text(`${key.toUpperCase()}: ${value}`);
+});
+Running the Project
+To run the project, simply open the HTML file in a web browser. The D3 library will fetch the JSON data and render the visualizations.
+
+Built With
+D3.js - The JavaScript library used for data visualization
+JavaScript - The programming language used
+Plotly - The JavaScript graphing library used
+Author
+[Your Name]
+License
+This project is licensed under the [Name of License]
+
+Acknowledgments
+Phind and StackOverflow for readme assistance. Reviewed and/or amended by this author.
